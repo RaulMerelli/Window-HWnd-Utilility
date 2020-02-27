@@ -51,11 +51,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.delayN = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
+            this.delayN = new System.Windows.Forms.NumericUpDown();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.hwndNumeric = new System.Windows.Forms.NumericUpDown();
+            this.force_close = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.close_btn = new System.Windows.Forms.Button();
+            this.minimize_btn = new System.Windows.Forms.Button();
+            this.window_btn = new System.Windows.Forms.Button();
+            this.maximize_btn = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.alphaN2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yN)).BeginInit();
@@ -67,6 +75,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hwndNumeric)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // SetBtn2
@@ -75,7 +84,7 @@
             this.SetBtn2.Name = "SetBtn2";
             this.SetBtn2.Size = new System.Drawing.Size(127, 23);
             this.SetBtn2.TabIndex = 0;
-            this.SetBtn2.Text = "Imposta trasparenza";
+            this.SetBtn2.Text = "Set trasparency";
             this.SetBtn2.UseVisualStyleBackColor = true;
             this.SetBtn2.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -102,7 +111,7 @@
             this.SetTitleBtn.Name = "SetTitleBtn";
             this.SetTitleBtn.Size = new System.Drawing.Size(75, 23);
             this.SetTitleBtn.TabIndex = 3;
-            this.SetTitleBtn.Text = "Cambio titolo";
+            this.SetTitleBtn.Text = "Set";
             this.SetTitleBtn.UseVisualStyleBackColor = true;
             this.SetTitleBtn.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -110,7 +119,7 @@
             // 
             this.searchBox.Location = new System.Drawing.Point(14, 32);
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(94, 20);
+            this.searchBox.Size = new System.Drawing.Size(187, 20);
             this.searchBox.TabIndex = 4;
             // 
             // TitleBox
@@ -135,7 +144,7 @@
             this.SetBtn1.Name = "SetBtn1";
             this.SetBtn1.Size = new System.Drawing.Size(75, 23);
             this.SetBtn1.TabIndex = 9;
-            this.SetBtn1.Text = "Imposta";
+            this.SetBtn1.Text = "Set";
             this.SetBtn1.UseVisualStyleBackColor = true;
             this.SetBtn1.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -145,7 +154,7 @@
             this.SearchBtn2.Name = "SearchBtn2";
             this.SearchBtn2.Size = new System.Drawing.Size(75, 23);
             this.SearchBtn2.TabIndex = 10;
-            this.SearchBtn2.Text = "Conferma";
+            this.SearchBtn2.Text = "Confirm";
             this.SearchBtn2.UseVisualStyleBackColor = true;
             this.SearchBtn2.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -192,7 +201,7 @@
             this.groupBox1.Controls.Add(this.SetBtn2);
             this.groupBox1.Controls.Add(this.alphaN2);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(16, 12);
+            this.groupBox1.Location = new System.Drawing.Point(334, 105);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(312, 68);
             this.groupBox1.TabIndex = 16;
@@ -255,11 +264,11 @@
             // 
             // SearchBtn1
             // 
-            this.SearchBtn1.Location = new System.Drawing.Point(120, 30);
+            this.SearchBtn1.Location = new System.Drawing.Point(231, 29);
             this.SearchBtn1.Name = "SearchBtn1";
             this.SearchBtn1.Size = new System.Drawing.Size(75, 23);
             this.SearchBtn1.TabIndex = 20;
-            this.SearchBtn1.Text = "Ricerca";
+            this.SearchBtn1.Text = "Search";
             this.SearchBtn1.UseVisualStyleBackColor = true;
             this.SearchBtn1.Click += new System.EventHandler(this.button2_Click_1);
             // 
@@ -290,7 +299,7 @@
             this.groupBox2.Size = new System.Drawing.Size(312, 70);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Ottieni hWnd da Ricerca";
+            this.groupBox2.Text = "Get hWnd from search (processes list or window name)";
             // 
             // groupBox3
             // 
@@ -306,7 +315,16 @@
             this.groupBox3.Size = new System.Drawing.Size(312, 86);
             this.groupBox3.TabIndex = 24;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Ottieni hWnd da coordinate";
+            this.groupBox3.Text = "Get hWnd from screen coordinates";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(120, 29);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(59, 13);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "Delay (ms):";
             // 
             // delayN
             // 
@@ -320,37 +338,28 @@
             this.delayN.Size = new System.Drawing.Size(81, 20);
             this.delayN.TabIndex = 23;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(120, 29);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(59, 13);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "Delay (ms):";
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.alphaN1);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.SetBtn1);
-            this.groupBox4.Location = new System.Drawing.Point(16, 393);
+            this.groupBox4.Location = new System.Drawing.Point(334, 268);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(312, 56);
             this.groupBox4.TabIndex = 25;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Imposta trasparenza";
+            this.groupBox4.Text = "Set hWnd trasparency";
             // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.TitleBox);
             this.groupBox5.Controls.Add(this.SetTitleBtn);
-            this.groupBox5.Location = new System.Drawing.Point(16, 455);
+            this.groupBox5.Location = new System.Drawing.Point(334, 330);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(312, 57);
             this.groupBox5.TabIndex = 26;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Cambia titolo";
+            this.groupBox5.Text = "Set hWnd window title";
             // 
             // hwndNumeric
             // 
@@ -364,11 +373,122 @@
             this.hwndNumeric.Size = new System.Drawing.Size(312, 20);
             this.hwndNumeric.TabIndex = 27;
             // 
+            // force_close
+            // 
+            this.force_close.AutoSize = true;
+            this.force_close.Location = new System.Drawing.Point(536, 206);
+            this.force_close.Name = "force_close";
+            this.force_close.Size = new System.Drawing.Size(110, 17);
+            this.force_close.TabIndex = 32;
+            this.force_close.Text = "force hWnd close";
+            this.force_close.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.close_btn);
+            this.panel1.Controls.Add(this.minimize_btn);
+            this.panel1.Controls.Add(this.window_btn);
+            this.panel1.Controls.Add(this.maximize_btn);
+            this.panel1.Location = new System.Drawing.Point(334, 229);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(312, 33);
+            this.panel1.TabIndex = 33;
+            // 
+            // close_btn
+            // 
+            this.close_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
+            this.close_btn.FlatAppearance.BorderSize = 0;
+            this.close_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
+            this.close_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(17)))), ((int)(((byte)(35)))));
+            this.close_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.close_btn.ForeColor = System.Drawing.Color.Black;
+            this.close_btn.Image = global::WinHWndUtils.Properties.Resources.close1;
+            this.close_btn.Location = new System.Drawing.Point(265, 1);
+            this.close_btn.Name = "close_btn";
+            this.close_btn.Size = new System.Drawing.Size(46, 32);
+            this.close_btn.TabIndex = 28;
+            this.close_btn.TabStop = false;
+            this.close_btn.UseVisualStyleBackColor = false;
+            this.close_btn.Click += new System.EventHandler(this.close_btn_Click);
+            this.close_btn.MouseEnter += new System.EventHandler(this.close_btn_MouseEnter);
+            this.close_btn.MouseLeave += new System.EventHandler(this.close_btn_MouseLeave);
+            // 
+            // minimize_btn
+            // 
+            this.minimize_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
+            this.minimize_btn.FlatAppearance.BorderSize = 0;
+            this.minimize_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.minimize_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(185)))), ((int)(((byte)(185)))));
+            this.minimize_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.minimize_btn.Image = global::WinHWndUtils.Properties.Resources.minimize;
+            this.minimize_btn.Location = new System.Drawing.Point(127, 1);
+            this.minimize_btn.Name = "minimize_btn";
+            this.minimize_btn.Size = new System.Drawing.Size(46, 32);
+            this.minimize_btn.TabIndex = 31;
+            this.minimize_btn.TabStop = false;
+            this.minimize_btn.UseVisualStyleBackColor = false;
+            this.minimize_btn.Click += new System.EventHandler(this.minimize_btn_Click);
+            // 
+            // window_btn
+            // 
+            this.window_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
+            this.window_btn.FlatAppearance.BorderSize = 0;
+            this.window_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.window_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(185)))), ((int)(((byte)(185)))));
+            this.window_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.window_btn.Image = global::WinHWndUtils.Properties.Resources.window;
+            this.window_btn.Location = new System.Drawing.Point(173, 1);
+            this.window_btn.Name = "window_btn";
+            this.window_btn.Size = new System.Drawing.Size(46, 32);
+            this.window_btn.TabIndex = 29;
+            this.window_btn.TabStop = false;
+            this.window_btn.UseVisualStyleBackColor = false;
+            this.window_btn.Click += new System.EventHandler(this.window_btn_Click);
+            // 
+            // maximize_btn
+            // 
+            this.maximize_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
+            this.maximize_btn.FlatAppearance.BorderSize = 0;
+            this.maximize_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
+            this.maximize_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(185)))), ((int)(((byte)(185)))));
+            this.maximize_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.maximize_btn.Image = global::WinHWndUtils.Properties.Resources.maximize;
+            this.maximize_btn.Location = new System.Drawing.Point(219, 1);
+            this.maximize_btn.Name = "maximize_btn";
+            this.maximize_btn.Size = new System.Drawing.Size(46, 32);
+            this.maximize_btn.TabIndex = 30;
+            this.maximize_btn.TabStop = false;
+            this.maximize_btn.UseVisualStyleBackColor = false;
+            this.maximize_btn.Click += new System.EventHandler(this.maximize_btn_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
+            this.panel2.Location = new System.Drawing.Point(0, 1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(127, 32);
+            this.panel2.TabIndex = 32;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(13, 27);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(171, 33);
+            this.label9.TabIndex = 34;
+            this.label9.Text = "hWnd Utility";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(343, 526);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(662, 400);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.hwndNumeric);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -380,6 +500,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.WinTextBox);
             this.Controls.Add(this.classnameBox);
+            this.Controls.Add(this.force_close);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Window hWnd Utility";
             ((System.ComponentModel.ISupportInitialize)(this.alphaN2)).EndInit();
@@ -398,6 +521,7 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hwndNumeric)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -433,6 +557,14 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.NumericUpDown hwndNumeric;
+        private System.Windows.Forms.Button close_btn;
+        private System.Windows.Forms.Button window_btn;
+        private System.Windows.Forms.Button maximize_btn;
+        private System.Windows.Forms.Button minimize_btn;
+        private System.Windows.Forms.CheckBox force_close;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label9;
     }
 }
 

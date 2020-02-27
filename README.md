@@ -11,3 +11,5 @@ Also available with delay timer, useful for thing that doesn't stay on top when 
 
 Set a custom level of trasparency or a custom title bar name on any Win32 Window which you know the hWnd.
 Set a custon level of trasparency on the taskbar (Any Windows versions) and the start menu (Only Win10) without even knowing the hWnd.
+
+From the hWnd you can also maximize, minimize, restore, close or destroy.

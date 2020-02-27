@@ -12,67 +12,6 @@ using System.Threading;
 
 namespace WinHWndUtils
 {
-    [Flags()]
-    enum SetWindowPosFlags : uint
-    {
-        /// <summary>If the calling thread and the thread that owns the window are attached to different input queues, 
-        /// the system posts the request to the thread that owns the window. This prevents the calling thread from 
-        /// blocking its execution while other threads process the request.</summary>
-        /// <remarks>SWP_ASYNCWINDOWPOS</remarks>
-        AsynchronousWindowPosition = 0x4000,
-        /// <summary>Prevents generation of the WM_SYNCPAINT message.</summary>
-        /// <remarks>SWP_DEFERERASE</remarks>
-        DeferErase = 0x2000,
-        /// <summary>Draws a frame (defined in the window's class description) around the window.</summary>
-        /// <remarks>SWP_DRAWFRAME</remarks>
-        DrawFrame = 0x0020,
-        /// <summary>Applies new frame styles set using the SetWindowLong function. Sends a WM_NCCALCSIZE message to 
-        /// the window, even if the window's size is not being changed. If this flag is not specified, WM_NCCALCSIZE 
-        /// is sent only when the window's size is being changed.</summary>
-        /// <remarks>SWP_FRAMECHANGED</remarks>
-        FrameChanged = 0x0020,
-        /// <summary>Hides the window.</summary>
-        /// <remarks>SWP_HIDEWINDOW</remarks>
-        SWP_HIDEWINDOW = 0x0080,
-        /// <summary>Does not activate the window. If this flag is not set, the window is activated and moved to the 
-        /// top of either the topmost or non-topmost group (depending on the setting of the hWndInsertAfter 
-        /// parameter).</summary>
-        /// <remarks>SWP_NOACTIVATE</remarks>
-        DoNotActivate = 0x0010,
-        /// <summary>Discards the entire contents of the client area. If this flag is not specified, the valid 
-        /// contents of the client area are saved and copied back into the client area after the window is sized or 
-        /// repositioned.</summary>
-        /// <remarks>SWP_NOCOPYBITS</remarks>
-        DoNotCopyBits = 0x0100,
-        /// <summary>Retains the current position (ignores X and Y parameters).</summary>
-        /// <remarks>SWP_NOMOVE</remarks>
-        IgnoreMove = 0x0002,
-        /// <summary>Does not change the owner window's position in the Z order.</summary>
-        /// <remarks>SWP_NOOWNERZORDER</remarks>
-        DoNotChangeOwnerZOrder = 0x0200,
-        /// <summary>Does not redraw changes. If this flag is set, no repainting of any kind occurs. This applies to 
-        /// the client area, the nonclient area (including the title bar and scroll bars), and any part of the parent 
-        /// window uncovered as a result of the window being moved. When this flag is set, the application must 
-        /// explicitly invalidate or redraw any parts of the window and parent window that need redrawing.</summary>
-        /// <remarks>SWP_NOREDRAW</remarks>
-        DoNotRedraw = 0x0008,
-        /// <summary>Same as the SWP_NOOWNERZORDER flag.</summary>
-        /// <remarks>SWP_NOREPOSITION</remarks>
-        DoNotReposition = 0x0200,
-        /// <summary>Prevents the window from receiving the WM_WINDOWPOSCHANGING message.</summary>
-        /// <remarks>SWP_NOSENDCHANGING</remarks>
-        DoNotSendChangingEvent = 0x0400,
-        /// <summary>Retains the current size (ignores the cx and cy parameters).</summary>
-        /// <remarks>SWP_NOSIZE</remarks>
-        IgnoreResize = 0x0001,
-        /// <summary>Retains the current Z order (ignores the hWndInsertAfter parameter).</summary>
-        /// <remarks>SWP_NOZORDER</remarks>
-        IgnoreZOrder = 0x0004,
-        /// <summary>Displays the window.</summary>
-        /// <remarks>SWP_SHOWWINDOW</remarks>
-        SWP_SHOWWINDOW = 0x0040,
-    }
-
     public partial class Form1 : Form
     {
         [DllImport("user32.dll")]
@@ -93,10 +32,9 @@ namespace WinHWndUtils
         [DllImport("user32.dll", SetLastError = true)]
         static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
-        /*
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className, IntPtr windowTitle);
-        */
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool ShowWindow(IntPtr hWnd, ShowWindowCommands nCmdShow);
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, IntPtr className, string windowTitle);
@@ -110,9 +48,28 @@ namespace WinHWndUtils
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
 
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
+        static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
+
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
 
+        /// <summary>
+        /// Find window by Caption only. Note you must pass IntPtr.Zero as the first parameter.
+        /// </summary>
+        [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
+        static extern IntPtr FindWindowByCaption(IntPtr ZeroOnly, string lpWindowName);
+
+        /// <summary>
+        /// <para>The DestroyWindow function destroys the specified window. The function sends WM_DESTROY and WM_NCDESTROY messages to the window to deactivate it and remove the keyboard focus from it. The function also destroys the window's menu, flushes the thread message queue, destroys timers, removes clipboard ownership, and breaks the clipboard viewer chain (if the window is at the top of the viewer chain).</para>
+        /// <para>If the specified window is a parent or owner window, DestroyWindow automatically destroys the associated child or owned windows when it destroys the parent or owner window. The function first destroys child or owned windows, and then it destroys the parent or owner window.</para>
+        /// <para>DestroyWindow also destroys modeless dialog boxes created by the CreateDialog function.</para>
+        /// </summary>
+        /// <param name="hwnd">Handle to the window to be destroyed.</param>
+        /// <returns>If the function succeeds, the return value is nonzero. If the function fails, the return value is zero. To get extended error information, call GetLastError.</returns>
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool DestroyWindow(IntPtr hwnd);
         private IntPtr TaskbarHWnd, StartButtonHWnd, Windows10StartMenu;
 
         public Form1()
@@ -120,10 +77,16 @@ namespace WinHWndUtils
             InitializeComponent();
         }
 
-        public const int GWL_EXSTYLE = -20;
-        public const int WS_EX_LAYERED = 0x80000;
-        public const int LWA_ALPHA = 0x2;
-        public const int LWA_COLORKEY = 0x1;
+        const int GWL_EXSTYLE = -20;
+        const int WS_EX_LAYERED = 0x80000;
+        const int LWA_ALPHA = 0x2;
+        const int LWA_COLORKEY = 0x1;
+        const uint WM_CLOSE = 0x10;
+        const uint WM_QUIT = 0x12;
+        const uint WM_DESTROY = 0x02;
+        public const int WM_SYSCOMMAND = 0x0112;
+        public const int SC_CLOSE = 0xF060;
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -131,6 +94,20 @@ namespace WinHWndUtils
                 (int)SetWindowPosFlags.SWP_SHOWWINDOW);
             SetWindowPos(StartButtonHWnd, IntPtr.Zero, 0, 0, 0, 0,
                 (int)SetWindowPosFlags.SWP_SHOWWINDOW);
+        }
+
+        public void CloseWindow(IntPtr hWindow)
+        {
+
+            SendMessage(hWindow, force_close.Checked ? WM_DESTROY : WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
+            if (force_close.Checked)
+            {
+                SendMessage(hWindow, WM_DESTROY, IntPtr.Zero, IntPtr.Zero);
+            }
+            else
+            {
+                SendMessage(hWindow, WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -172,21 +149,25 @@ namespace WinHWndUtils
             {
                 foreach (Process pList in Process.GetProcesses())
                 {
-                    if (pList.MainWindowTitle.Contains(searchBox.Text)) //nome finestra principale
+                    if (pList.MainWindowTitle.ToLower().Contains(searchBox.Text.ToLower())) //name of the main window
                     {
                         hWnd = pList.MainWindowHandle;
                     }
-                    else if (pList.ProcessName.Contains(searchBox.Text)) //nome proceasso
+                    else if (pList.ProcessName.ToLower().Contains(searchBox.Text.ToLower())) //process name
                     {
                         hWnd = pList.MainWindowHandle;
                     }
-                    else //handle diretto
+                    else if (hWnd == IntPtr.Zero)
                     {
-                        int test = 0;
-                        int.TryParse(searchBox.Text, out test);
-                        if (test != 0)
+                        hWnd = FindWindowByCaption(IntPtr.Zero, searchBox.Text);
+                        if (hWnd == IntPtr.Zero) //direct handle
                         {
-                            hWnd = (IntPtr)test;
+                            int test = 0;
+                            int.TryParse(searchBox.Text, out test);
+                            if (test != 0)
+                            {
+                                hWnd = (IntPtr)test;
+                            }
                         }
                     }
                 }
@@ -194,43 +175,59 @@ namespace WinHWndUtils
             }
         }
 
+        private void close_btn_Click(object sender, EventArgs e)
+        {
+            IntPtr hWnd = (IntPtr)hwndNumeric.Value;
+            SendMessage(hWnd, force_close.Checked ? WM_DESTROY : WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
+        }
+
+        private void maximize_btn_Click(object sender, EventArgs e)
+        {
+            IntPtr hWnd = (IntPtr)hwndNumeric.Value;
+            ShowWindow(hWnd, ShowWindowCommands.Maximize);
+        }
+
+        private void window_btn_Click(object sender, EventArgs e)
+        {
+            IntPtr hWnd = (IntPtr)hwndNumeric.Value;
+            ShowWindow(hWnd, ShowWindowCommands.Normal);
+        }
+
+        private void minimize_btn_Click(object sender, EventArgs e)
+        {
+            IntPtr hWnd = (IntPtr)hwndNumeric.Value;
+            ShowWindow(hWnd, ShowWindowCommands.Minimize);
+        }
+
+        private void close_btn_MouseEnter(object sender, EventArgs e)
+        {
+            close_btn.Image = Properties.Resources.close2;
+        }
+
+        private void close_btn_MouseLeave(object sender, EventArgs e)
+        {
+            close_btn.Image = Properties.Resources.close1;
+        }
+
         private void button5_Click(object sender, EventArgs e)
         {
             int milliseconds = (int)delayN.Value;
             Thread.Sleep(milliseconds);
-
             IntPtr hWnd = WindowFromPoint(new Point((int)xN.Value, (int)yN.Value));
-            //SetWindowLong(hWnd, -20, GetWindowLong(GetForegroundWindow(), -20) ^ 524288);
-
             write(hWnd);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //SetWindowLong(Handle, GWL_EXSTYLE, GetWindowLong(Handle, GWL_EXSTYLE) ^ WS_EX_LAYERED);
-
-            //SetLayeredWindowAttributes((IntPtr)1442238, 0, 128, LWA_ALPHA);
-            //IntPtr ptr = 1442238;
-            //SetLayeredWindowAttributes((IntPtr)1442238, 0u, 80, 2u);
-            // Get the taskbar's and start button's window handles.
             TaskbarHWnd = FindWindow("Shell_traywnd", "");
-
             Windows10StartMenu = FindWindow("Windows.UI.Core.CoreWindow", "Start");
-
             StartButtonHWnd = FindWindowEx(IntPtr.Zero, IntPtr.Zero, (IntPtr)0xC017, null);
-
             
             SetWindowLong(TaskbarHWnd, -20, GetWindowLong(GetForegroundWindow(), -20) ^ 524288);
             SetWindowLong(Windows10StartMenu, -20, GetWindowLong(GetForegroundWindow(), -20) ^ 524288);
 
-            // Hide the taskbar and start button.
-            //SetWindowPos(TaskbarHWnd, IntPtr.Zero, 0, 0, 0, 0, (int)SetWindowPosFlags.SWP_HIDEWINDOW);
             SetLayeredWindowAttributes(TaskbarHWnd, 0u, (byte)alphaN2.Value, 2u);
             SetLayeredWindowAttributes(Windows10StartMenu, 0u, (byte)alphaN2.Value, 2u);
-            //SetWindowPos(StartButtonHWnd, IntPtr.Zero, 0, 0, 0, 0, (int)SetWindowPosFlags.SWP_HIDEWINDOW);
-
-            // Maximize.
-            //this.Bounds = Screen.PrimaryScreen.Bounds;
         }
     }
 }
