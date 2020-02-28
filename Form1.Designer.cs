@@ -28,21 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SetBtn2 = new System.Windows.Forms.Button();
-            this.alphaN2 = new System.Windows.Forms.NumericUpDown();
             this.SetTitleBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.TitleBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.SetBtn1 = new System.Windows.Forms.Button();
             this.SearchBtn2 = new System.Windows.Forms.Button();
             this.xN = new System.Windows.Forms.NumericUpDown();
             this.yN = new System.Windows.Forms.NumericUpDown();
             this.classnameBox = new System.Windows.Forms.TextBox();
             this.WinTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.alphaN1 = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
+            this.alphaN2_value = new System.Windows.Forms.Label();
+            this.alphaN2 = new System.Windows.Forms.TrackBar();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -54,56 +50,36 @@
             this.label8 = new System.Windows.Forms.Label();
             this.delayN = new System.Windows.Forms.NumericUpDown();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.alphaN1 = new System.Windows.Forms.TrackBar();
+            this.alphaN1_value = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.hwndNumeric = new System.Windows.Forms.NumericUpDown();
             this.force_close = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.close_btn = new System.Windows.Forms.Button();
             this.minimize_btn = new System.Windows.Forms.Button();
             this.window_btn = new System.Windows.Forms.Button();
             this.maximize_btn = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.alphaN2)).BeginInit();
+            this.Pname_lbl = new System.Windows.Forms.Label();
+            this.pid_lbl = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.searchresults = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.xN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yN)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.alphaN1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.alphaN2)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.delayN)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.alphaN1)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hwndNumeric)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // SetBtn2
-            // 
-            this.SetBtn2.Location = new System.Drawing.Point(179, 26);
-            this.SetBtn2.Name = "SetBtn2";
-            this.SetBtn2.Size = new System.Drawing.Size(127, 23);
-            this.SetBtn2.TabIndex = 0;
-            this.SetBtn2.Text = "Set trasparency";
-            this.SetBtn2.UseVisualStyleBackColor = true;
-            this.SetBtn2.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // alphaN2
-            // 
-            this.alphaN2.Location = new System.Drawing.Point(53, 29);
-            this.alphaN2.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.alphaN2.Name = "alphaN2";
-            this.alphaN2.Size = new System.Drawing.Size(75, 20);
-            this.alphaN2.TabIndex = 2;
-            this.alphaN2.Value = new decimal(new int[] {
-            210,
-            0,
-            0,
-            0});
             // 
             // SetTitleBtn
             // 
@@ -128,25 +104,6 @@
             this.TitleBox.Name = "TitleBox";
             this.TitleBox.Size = new System.Drawing.Size(117, 20);
             this.TitleBox.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 31);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Alpha:";
-            // 
-            // SetBtn1
-            // 
-            this.SetBtn1.Location = new System.Drawing.Point(131, 16);
-            this.SetBtn1.Name = "SetBtn1";
-            this.SetBtn1.Size = new System.Drawing.Size(75, 23);
-            this.SetBtn1.TabIndex = 9;
-            this.SetBtn1.Text = "Set";
-            this.SetBtn1.UseVisualStyleBackColor = true;
-            this.SetBtn1.Click += new System.EventHandler(this.button4_Click);
             // 
             // SearchBtn2
             // 
@@ -186,6 +143,7 @@
             // 
             this.classnameBox.Location = new System.Drawing.Point(16, 153);
             this.classnameBox.Name = "classnameBox";
+            this.classnameBox.ReadOnly = true;
             this.classnameBox.Size = new System.Drawing.Size(312, 20);
             this.classnameBox.TabIndex = 14;
             // 
@@ -193,47 +151,42 @@
             // 
             this.WinTextBox.Location = new System.Drawing.Point(16, 199);
             this.WinTextBox.Name = "WinTextBox";
+            this.WinTextBox.ReadOnly = true;
             this.WinTextBox.Size = new System.Drawing.Size(312, 20);
             this.WinTextBox.TabIndex = 15;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.SetBtn2);
+            this.groupBox1.Controls.Add(this.alphaN2_value);
             this.groupBox1.Controls.Add(this.alphaN2);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(334, 105);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(312, 68);
+            this.groupBox1.Size = new System.Drawing.Size(312, 56);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Taskbar - Start";
+            this.groupBox1.Text = "Taskbar and Start transparency";
             // 
-            // alphaN1
+            // alphaN2_value
             // 
-            this.alphaN1.Location = new System.Drawing.Point(50, 19);
-            this.alphaN1.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.alphaN1.Name = "alphaN1";
-            this.alphaN1.Size = new System.Drawing.Size(75, 20);
-            this.alphaN1.TabIndex = 9;
-            this.alphaN1.Value = new decimal(new int[] {
-            210,
-            0,
-            0,
-            0});
-            this.alphaN1.ValueChanged += new System.EventHandler(this.button4_Click);
+            this.alphaN2_value.AutoSize = true;
+            this.alphaN2_value.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.alphaN2_value.Location = new System.Drawing.Point(136, 23);
+            this.alphaN2_value.Name = "alphaN2_value";
+            this.alphaN2_value.Size = new System.Drawing.Size(29, 16);
+            this.alphaN2_value.TabIndex = 10;
+            this.alphaN2_value.Text = "255";
             // 
-            // label4
+            // alphaN2
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 21);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Alpha:";
+            this.alphaN2.AutoSize = false;
+            this.alphaN2.Location = new System.Drawing.Point(10, 23);
+            this.alphaN2.Maximum = 255;
+            this.alphaN2.Name = "alphaN2";
+            this.alphaN2.Size = new System.Drawing.Size(117, 24);
+            this.alphaN2.TabIndex = 9;
+            this.alphaN2.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.alphaN2.Value = 255;
+            this.alphaN2.Scroll += new System.EventHandler(this.alphaN2_Scroll);
             // 
             // label5
             // 
@@ -270,7 +223,7 @@
             this.SearchBtn1.TabIndex = 20;
             this.SearchBtn1.Text = "Search";
             this.SearchBtn1.UseVisualStyleBackColor = true;
-            this.SearchBtn1.Click += new System.EventHandler(this.button2_Click_1);
+            this.SearchBtn1.Click += new System.EventHandler(this.SearchBtn_Click);
             // 
             // label1
             // 
@@ -292,14 +245,18 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.Pname_lbl);
+            this.groupBox2.Controls.Add(this.pid_lbl);
+            this.groupBox2.Controls.Add(this.pictureBox1);
+            this.groupBox2.Controls.Add(this.searchresults);
             this.groupBox2.Controls.Add(this.searchBox);
             this.groupBox2.Controls.Add(this.SearchBtn1);
             this.groupBox2.Location = new System.Drawing.Point(16, 317);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(312, 70);
+            this.groupBox2.Size = new System.Drawing.Size(312, 193);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Get hWnd from search (processes list or window name)";
+            this.groupBox2.Text = "Get hWnd from search (process name, caption or class name)";
             // 
             // groupBox3
             // 
@@ -328,6 +285,11 @@
             // 
             // delayN
             // 
+            this.delayN.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.delayN.Location = new System.Drawing.Point(120, 48);
             this.delayN.Maximum = new decimal(new int[] {
             60000,
@@ -341,14 +303,35 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.alphaN1);
-            this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.SetBtn1);
+            this.groupBox4.Controls.Add(this.alphaN1_value);
             this.groupBox4.Location = new System.Drawing.Point(334, 268);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(312, 56);
             this.groupBox4.TabIndex = 25;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Set hWnd trasparency";
+            this.groupBox4.Text = "Change hWnd transparency";
+            // 
+            // alphaN1
+            // 
+            this.alphaN1.AutoSize = false;
+            this.alphaN1.Location = new System.Drawing.Point(6, 23);
+            this.alphaN1.Maximum = 255;
+            this.alphaN1.Name = "alphaN1";
+            this.alphaN1.Size = new System.Drawing.Size(117, 24);
+            this.alphaN1.TabIndex = 11;
+            this.alphaN1.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.alphaN1.Value = 255;
+            this.alphaN1.Scroll += new System.EventHandler(this.alphaN1_Scroll);
+            // 
+            // alphaN1_value
+            // 
+            this.alphaN1_value.AutoSize = true;
+            this.alphaN1_value.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.alphaN1_value.Location = new System.Drawing.Point(132, 23);
+            this.alphaN1_value.Name = "alphaN1_value";
+            this.alphaN1_value.Size = new System.Drawing.Size(29, 16);
+            this.alphaN1_value.TabIndex = 12;
+            this.alphaN1_value.Text = "255";
             // 
             // groupBox5
             // 
@@ -395,6 +378,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(312, 33);
             this.panel1.TabIndex = 33;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
+            this.panel2.Location = new System.Drawing.Point(0, 1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(127, 32);
+            this.panel2.TabIndex = 32;
             // 
             // close_btn
             // 
@@ -463,14 +454,6 @@
             this.maximize_btn.UseVisualStyleBackColor = false;
             this.maximize_btn.Click += new System.EventHandler(this.maximize_btn_Click);
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
-            this.panel2.Location = new System.Drawing.Point(0, 1);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(127, 32);
-            this.panel2.TabIndex = 32;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -481,17 +464,53 @@
             this.label9.TabIndex = 34;
             this.label9.Text = "hWnd Utility";
             // 
+            // Pname_lbl
+            // 
+            this.Pname_lbl.AutoSize = true;
+            this.Pname_lbl.Location = new System.Drawing.Point(163, 110);
+            this.Pname_lbl.Name = "Pname_lbl";
+            this.Pname_lbl.Size = new System.Drawing.Size(83, 13);
+            this.Pname_lbl.TabIndex = 24;
+            this.Pname_lbl.Text = "Process name: -";
+            // 
+            // pid_lbl
+            // 
+            this.pid_lbl.AutoSize = true;
+            this.pid_lbl.Location = new System.Drawing.Point(163, 77);
+            this.pid_lbl.Name = "pid_lbl";
+            this.pid_lbl.Size = new System.Drawing.Size(34, 13);
+            this.pid_lbl.TabIndex = 23;
+            this.pid_lbl.Text = "PID: -";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(166, 144);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
+            // 
+            // searchresults
+            // 
+            this.searchresults.FormattingEnabled = true;
+            this.searchresults.Location = new System.Drawing.Point(14, 77);
+            this.searchresults.Name = "searchresults";
+            this.searchresults.Size = new System.Drawing.Size(128, 108);
+            this.searchresults.TabIndex = 21;
+            this.searchresults.SelectedIndexChanged += new System.EventHandler(this.searchresults_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(662, 400);
+            this.ClientSize = new System.Drawing.Size(662, 522);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.hwndNumeric);
             this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label7);
@@ -505,12 +524,11 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Window hWnd Utility";
-            ((System.ComponentModel.ISupportInitialize)(this.alphaN2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.yN)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.alphaN1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.alphaN2)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -518,32 +536,27 @@
             ((System.ComponentModel.ISupportInitialize)(this.delayN)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.alphaN1)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hwndNumeric)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button SetBtn2;
-        private System.Windows.Forms.NumericUpDown alphaN2;
         private System.Windows.Forms.Button SetTitleBtn;
         private System.Windows.Forms.TextBox searchBox;
         private System.Windows.Forms.TextBox TitleBox;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button SetBtn1;
         private System.Windows.Forms.Button SearchBtn2;
         private System.Windows.Forms.NumericUpDown xN;
         private System.Windows.Forms.NumericUpDown yN;
         private System.Windows.Forms.TextBox classnameBox;
         private System.Windows.Forms.TextBox WinTextBox;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.NumericUpDown alphaN1;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
@@ -565,6 +578,14 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label alphaN2_value;
+        private System.Windows.Forms.TrackBar alphaN2;
+        private System.Windows.Forms.Label alphaN1_value;
+        private System.Windows.Forms.TrackBar alphaN1;
+        private System.Windows.Forms.Label Pname_lbl;
+        private System.Windows.Forms.Label pid_lbl;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ListBox searchresults;
     }
 }
 
