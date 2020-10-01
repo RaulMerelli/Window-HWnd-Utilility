@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -105,7 +106,7 @@ namespace WinHWndUtils
         public static extern IntPtr GetForegroundWindow();
 
         [DllImport("user32.dll")]
-        public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+        public static extern int SetWindowLong(IntPtr hWnd, int nIndex, long dwNewLong);
 
         [DllImport("user32.dll")]
         public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
@@ -157,5 +158,8 @@ namespace WinHWndUtils
 
         [DllImport("user32.dll", EntryPoint = "GetClassLongPtr")]
         private static extern IntPtr GetClassLongPtr64(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll")]
+        public static extern long GetWindowRect(int hWnd, ref Rectangle lpRect);
     }
 }

@@ -221,6 +221,30 @@ namespace WinHWndUtils
             }
         }
 
+        private void SetPosBtn_Click(object sender, EventArgs e)
+        {
+            IntPtr hWnd = (IntPtr)hwndNumeric.Value;
+            Win32.SetWindowPos(hWnd, IntPtr.Zero, (int)xpos.Value, (int)ypos.Value, 0, 0, (int)(SetWindowPosFlags.SWP_SHOWWINDOW | SetWindowPosFlags.IgnoreResize));
+        }
+
+        private void StyleSetBtn_Click(object sender, EventArgs e)
+        {
+            IntPtr hWnd = (IntPtr)hwndNumeric.Value;
+            //-20 ex style
+            //-16 style
+            Win32.SetWindowLong(hWnd, -16, (long)style.Value);
+            
+            Win32.SetWindowPos(hWnd, IntPtr.Zero, 0, 0, 0, 0, (int)(SetWindowPosFlags.FrameChanged | SetWindowPosFlags.IgnoreMove | SetWindowPosFlags.IgnoreResize | SetWindowPosFlags.IgnoreZOrder | SetWindowPosFlags.DoNotChangeOwnerZOrder));
+        }
+
+        private void SizeSetBtn_Click(object sender, EventArgs e)
+        {
+            IntPtr hWnd = (IntPtr)hwndNumeric.Value;
+            Rectangle rect = new Rectangle();
+            Win32.GetWindowRect((int)hWnd, ref rect);
+            Win32.SetWindowPos(hWnd, IntPtr.Zero, rect.X, rect.Y, rect.X + (int)w_w.Value, rect.Y + (int)w_h.Value, (int)SetWindowPosFlags.SWP_SHOWWINDOW);
+        }
+
         private void alphaN1_Scroll(object sender, EventArgs e)
         {
             IntPtr hWnd = (IntPtr)hwndNumeric.Value;
